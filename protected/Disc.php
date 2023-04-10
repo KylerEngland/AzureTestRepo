@@ -5,18 +5,18 @@ class Disc
     private $id;
     private $name;
     private $imageName;
-    private $brandCode;
+    private $brandName;
     private $stabilityCode;
     private $quantity;
     private $price;
     private $flightNums;
 
-    function __construct($id, $name, $imageName, $brandCode, $stabilityCode, $quantity, $price, $flightNums)
+    function __construct($id, $name, $imageName, $brandName, $stabilityCode, $quantity, $price, $flightNums)
     {
         $this->id = $id;
         $this->name = $name;
         $this->imageName = $imageName;
-        $this->brandCode = $brandCode;
+        $this->brandName = $brandName;
         $this->stabilityCode = $stabilityCode;
         $this->quantity = $quantity;
         $this->$price = $price;
@@ -35,9 +35,9 @@ class Disc
     {
         return $this->imageName;
     }
-    public function getBrandCode()
+    public function getBrandName()
     {
-        return $this->brandCode;
+        return $this->brandName;
     }
     public function getStabilityCode()
     {
@@ -61,17 +61,17 @@ class Disc
                         <div class="col mb-5">
                             <div class="card h-100">
                                 <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">' . $this->getFlightNums() . '</div>
-                                <img class="card-img-top" src="assets/img/' . $this->getImagename() . '.jpg" alt="..." />
+                                <img class="card-img-top" src="assets/img/' . $this->getImageName() . '.jpg" alt="..." />
                                 <div class="card-body p-4">
                                     <div class="text-center">
                                         <h5 class="fw-bolder">' . $this->getName() . '</h5>
-                                        <p>' . $this->getBrandCode() . '</p>
+                                        <p>' . $this->getBrandName() . '</p>
                                         <h6>$' . $this->getPrice() . '</h6>
                                     </div>
                                 </div>
                                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                     <div class="text-center">
-                                        <button name="discID" class="btn btn-outline-dark mt-auto" type="submit" value="' . $this->getFlightNums() . '" >Add to cart</button>
+                                        <button name="discID" class="btn btn-outline-dark mt-auto" type="submit" value="' . $this->getID() . '" >Add to cart</button>
                                     </div>
                                 </div>
                             </div>
