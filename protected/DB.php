@@ -2,7 +2,7 @@
 
 class DB{
 
-    private static $conn;
+    private static $connection;
     private static $host;
     private static $username;
     private static $password;
@@ -20,10 +20,10 @@ class DB{
         self::$db_name = getenv("DBNAME");
         
         //Initializes MySQLi
-        self::$conn = mysqli_init();
+        self::$connection = mysqli_init();
         
         // Establish the connection
-        mysqli_real_connect(self::$conn, self::$host, self::$username, self::$password, self::$db_name, 3306, NULL, MYSQLI_CLIENT_SSL);
+        mysqli_real_connect(self::$connection, self::$host, self::$username, self::$password, self::$db_name, 3306, NULL, MYSQLI_CLIENT_SSL);
         
         //If connection failed, show the error
         if (mysqli_connect_errno()) {
@@ -32,12 +32,10 @@ class DB{
     }
     
     public static function getContent(){
-        // $sql = "SELECT * FROM disc AS d
-        //         INNER JOIN brand AS b ON d.brandcode = b.brandcode
-        //         ORDER BY id DESC";
-        $result = mysqli_query(self::$conn,'  SELECT * FROM disc AS d
-        INNER JOIN brand AS b ON d.brandcode = b.brandcode
-        ORDER BY id DESC');
+        $sql = "SELECT * FROM disc AS d
+                INNER JOIN brand AS b ON d.brandcode = b.brandcode
+                ORDER BY id DESC";
+        $result = mysqli_query(self::$connection,$sql);
         return $result;
     }
     

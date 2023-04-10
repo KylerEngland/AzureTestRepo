@@ -1,5 +1,5 @@
 <?php
-require_once('protected/database.php');
+require_once('protected/DB.php');
 require_once('protected/functions.inc.php');
 
 $database = new DB;
