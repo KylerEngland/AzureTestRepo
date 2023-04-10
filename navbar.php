@@ -1,3 +1,24 @@
+<?php
+require_once('protected/DB.php');
+require_once('protected/functions.inc.php');
+
+$database = new DB;
+$types = $database->getTypes();
+$brands = $database->getBrands();
+$stabilities = $database->getStabilities();
+$inCartQuantity = $database->getInCartQuantity();
+
+$quantity = mysqli_fetch_field($inCartQuantity);
+
+
+
+printf("Reading data from table: \n");
+$res = mysqli_query($conn, 'SELECT * FROM Products');
+while ($row = mysqli_fetch_assoc($res))
+ {
+    var_dump($row);
+ }
+?>
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container px-4 px-lg-5">
@@ -17,18 +38,37 @@
 
                                     <select class="dropdown-item form-select" name="type" onchange="this.form.submit()">
                                         <li><option value="" class="dropdown-item" href="#!">Types</option></li>
-                                        <!-- While types dropdown items -->
+                                        <?php
+
+                                        while($type = mysqli_fetch_assoc($types)){
+                                            ?>
+                                            <option value="<?=$type['typecode']?>"><?=$type['typename']?></option>
+                                            <?php
+                                        }
+                                        ?>
                                     </select>
                                     <li><hr class="dropdown-divider" /></li>
                                     <select class="form-select dropdown-item" name="brand" onchange="this.form.submit()">
                                         <li class="dropdown-item"><option value="" href="#!">Brands</option></li>
-                                        <!-- While brands dropdown items -->
+                                        <?php
+                                        while($brand = mysqli_fetch_assoc($brands)){
+                                            ?>
+                                            <option value="<?=$brand['brandcode']?>"><?=$brand['brandname']?></option>
+                                            <?php
+                                        }
+                                        ?>
                                     </select>
 
                                     <li><hr class="dropdown-divider" /></li>
                                     <select class="form-select dropdown-item" name="stability" onchange="this.form.submit()">
                                         <li class="dropdown-item"><option value="" href="#!">Stability</option></li>
-                                        <!-- While stability dropdown items -->
+                                        <?php
+                                        while($stability = mysqli_fetch_assoc($stabilities)){
+                                            ?>
+                                            <option value="<?=$stability['stabilitycode']?>"><?=$stability['stabilityname']?></option>
+                                            <?php
+                                        }
+                                        ?>
                                     </select>
                                 </ul>
                             </li>
