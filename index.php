@@ -3,11 +3,11 @@ require_once('protected/DB.php');
 require_once('protected/functions.inc.php');
 
 $database = new DB;
-$discs = $database->getContent();
-// if($_GET == NULL){
-// }else{
-//     $discs = $database->getFilteredContent($_GET['type'], $_GET['brand'], $_GET['stability']);
-// }
+if($_GET == NULL){
+    $discs = $database->getContent();
+}else{
+    $discs = $database->getFilteredContent($_GET['type'], $_GET['brand'], $_GET['stability']);
+}
 
 ?>
 <!DOCTYPE html>

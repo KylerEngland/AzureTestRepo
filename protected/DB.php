@@ -30,7 +30,7 @@ class DB{
             die('Failed to connect to MySQL: ' . mysqli_connect_error());
         }
     }
-    
+
     public static function getContent(){
         $sql = "SELECT * FROM disc AS d
                 INNER JOIN brand AS b ON d.brandcode = b.brandcode
@@ -38,6 +38,31 @@ class DB{
         $result = mysqli_query(self::$connection,$sql);
         return $result;
     }
+
+    public static function getFilteredContent($type, $brand, $stability){
+        $sql = "SELECT * FROM disc AS d
+                INNER JOIN brand AS b ON b.brandcode = d.brandcode
+                INNER JOIN type AS t ON t.typecode = d.typecode
+                INNER JOIN stability AS s ON s.stabilitycode = d.stabilitycode";
+
+
+        if(!($type == 0 || $type == NULL)){
+            $sql .= " WHERE d.typecode = '$type'";
+        }
+
+        if(!($brand == 0 || $brand == NULL)){
+            $sql .= " WHERE d.brandcode = '$brand'";
+        }
+
+        if(!($stability == 0 || $stability == NULL)){
+            $sql .= " WHERE d.stabilitycode = '$stability'";
+        }
+
+        $sql .= " ORDER BY id DESC";
+        $result = mysqli_query(self::$connection,$sql);
+        return $result;
+    }
+    
     
     public static function emptyCart(){
         if ($statement = mysqli_prepare(self::$connection, "DELETE FROM `cart` WHERE true = true")){
@@ -106,38 +131,6 @@ class DB{
     // }
 
 
-    // public static function getFilteredContent($type, $brand, $stability){
-    //     try{
-    //         $sql = "SELECT * FROM disc AS d
-    //                 INNER JOIN brand AS b ON b.brandcode = d.brandcode
-    //                 INNER JOIN type AS t ON t.typecode = d.typecode
-    //                 INNER JOIN stability AS s ON s.stabilitycode = d.stabilitycode";
-
-
-    //         if(!($type == 0 || $type == NULL)){
-    //             $sql .= " WHERE d.typecode = '$type'";
-    //         }
-
-    //         if(!($brand == 0 || $brand == NULL)){
-    //             $sql .= " WHERE d.brandcode = '$brand'";
-    //         }
-
-    //         if(!($stability == 0 || $stability == NULL)){
-    //             $sql .= " WHERE d.stabilitycode = '$stability'";
-    //         }
-
-    //         $sql .= " ORDER BY id DESC";
-    //         $statement = self::$connection->prepare($sql);
-    //         $statement->execute();
-    //         return $statement;
-    //     }
-    //     catch(PDOException $e){
-    //         die( $e->getMessage() );
-    //     }
-    //     finally {
-    //         $pdo = null;
-    //     }
-    // }
 
     public static function getTypes(){
         $sql = "SELECT * FROM type ORDER BY sortvalue ASC";

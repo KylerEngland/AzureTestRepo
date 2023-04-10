@@ -31,38 +31,6 @@ function outputDiscs($discs){
     return 'No posts found';
 }
 
-// function outputDiscs($discs){
-//     $foundOne = false;
-//     $disc = '';
-//     while($row = $discs->fetch()){
-//         $foundOne = true;
-//         $disc .=    '<form name="newPost" action="addToCart.php" method="post">
-//                         <div class="col mb-5">
-//                             <div class="card h-100">
-//                                 <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">' . $row['flightnums'] . '</div>
-//                                 <img class="card-img-top" src="assets/img/' . $row['imgname'] . '.jpg" alt="..." />
-//                                 <div class="card-body p-4">
-//                                     <div class="text-center">
-//                                         <h5 class="fw-bolder">' . $row['name'] . '</h5>
-//                                         <p>' . $row['brandname'] . '</p>
-//                                         <h6>$' . $row['price'] . '</h6>
-//                                     </div>
-//                                 </div>
-//                                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-//                                     <div class="text-center">
-//                                         <button name="discID" class="btn btn-outline-dark mt-auto" type="submit" value="' . $row['id'] . '" >Add to cart</button>
-//                                     </div>
-//                                 </div>
-//                             </div>
-//                         </div>
-//                     </form>';
-//     }
-//     if($foundOne){
-//         return $disc;
-//     }
-//     return 'No posts found';
-// }
-
 function outputCart($items){
     $foundOne = false;
     $item = '';
