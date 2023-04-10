@@ -9,15 +9,6 @@ $stabilities = $database->getStabilities();
 $inCartQuantity = $database->getInCartQuantity();
 
 $quantity = mysqli_fetch_field($inCartQuantity);
-
-
-
-printf("Reading data from table: \n");
-$res = mysqli_query($conn, 'SELECT * FROM Products');
-while ($row = mysqli_fetch_assoc($res))
- {
-    var_dump($row);
- }
 ?>
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
