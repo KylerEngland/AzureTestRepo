@@ -28,9 +28,7 @@ class database
     }
     public function getDiscsUnfiltered()
     {
-        $res = mysqli_query(self::$conn, '  SELECT * FROM disc AS d
-                                            INNER JOIN brand AS b ON d.brandcode = b.brandcode
-                                            ORDER BY id DESC');
+        $res = mysqli_query(self::$conn, '  SELECT * FROM disc');
         return $res;
     }
 }
