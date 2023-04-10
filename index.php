@@ -1,13 +1,13 @@
 <?php
-// require_once('protected/DB.php');
-// require_once('protected/functions.inc.php');
+require_once('protected/DB.php');
+require_once('protected/functions.inc.php');
 
-// $database = new DB;
-// if($_GET == NULL){
-//     $discs = $database->getContent();
-// }else{
-//     $discs = $database->getFilteredContent($_GET['type'], $_GET['brand'], $_GET['stability']);
-// }
+$database = new DB;
+if($_GET == NULL){
+    $discs = $database->getContent();
+}else{
+    $discs = $database->getFilteredContent($_GET['type'], $_GET['brand'], $_GET['stability']);
+}
 
 ?>
 <!DOCTYPE html>
@@ -42,7 +42,7 @@
         <div class="container px-4 px-lg-5 mt-5">
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
-                <!-- echo(outputDiscs($discs)) -->
+                <?=outputDiscs($discs);?>
 
             </div>
         </div>
