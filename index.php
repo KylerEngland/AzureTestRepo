@@ -2,11 +2,11 @@
 require_once('protected/database.php');
 require_once('protected/functions.inc.php');
 
-$database = new database;
-$discs = $database->getDiscsUnfiltered();
-// $database = new DB;
+$database = new DB;
+$discs = $database->getContent();
+// $database = new database;
+// $discs = $database->getDiscsUnfiltered();
 // if($_GET == NULL){
-//     $discs = $database->getContent();
 // }else{
 //     $discs = $database->getFilteredContent($_GET['type'], $_GET['brand'], $_GET['stability']);
 // }

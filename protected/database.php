@@ -28,21 +28,13 @@ class database
     }
     public function getDiscsUnfiltered()
     {
-        $res = mysqli_query(self::$conn, '  SELECT * FROM disc');
+        $res = mysqli_query(self::$conn, '  SELECT * FROM disc AS d
+                                            INNER JOIN brand AS b ON d.brandcode = b.brandcode
+                                            ORDER BY id DESC');
         return $res;
     }
 }
 
 
 
-
-
-
-
-// //Run the Select query
-// printf("Reading data from table: \n");
-// $res = mysqli_query($conn, 'SELECT * FROM Products');
-// while ($row = mysqli_fetch_assoc($res)) {
-//     var_dump($row);
-// }
 ?>
