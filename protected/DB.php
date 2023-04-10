@@ -1,5 +1,5 @@
 <?php 
-
+require_once('protected/Disc.php');
 class DB{
 
     private static $connection;
@@ -7,11 +7,6 @@ class DB{
     private static $username;
     private static $password;
     private static $db_name;
-    // private static $settings = array(
-    //     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-    //     PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
-    // );
-    
     
     function __construct(){
         self::$host = getenv("DBHOST");
@@ -36,7 +31,13 @@ class DB{
                 INNER JOIN brand AS b ON d.brandcode = b.brandcode
                 ORDER BY id DESC";
         $result = mysqli_query(self::$connection,$sql);
-        return $result;
+
+        $discs = array();
+        while($row = mysqli_fetch_assoc($result)){
+            $newDisc = new Disc($row['id'], $row['name'], $row['imgname'], $row['brandcode'], $row['stabilitycode'], $row['quantity'], $row['price'], $row['flightnums']);
+            array_push($discs, $newDisc);
+        }
+        return $discs;
     }
 
     public static function getFilteredContent($type, $brand, $stability){
@@ -121,7 +122,7 @@ class DB{
         )
         SELECT
             id,
-            NAME,
+            name,
             imgname,
             brandcode,
             stabilitycode,
