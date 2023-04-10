@@ -34,7 +34,8 @@ function outputDiscs($discs){
 function outputCart($items){
     $foundOne = false;
     $item = '';
-    while($row = $items->fetch()){
+    while($row = mysqli_fetch_assoc($items)){
+        
         $foundOne = true;
         $item .= '
                     <div class="card rounded-3 mb-4">
