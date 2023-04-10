@@ -7,8 +7,8 @@ $types = $database->getTypes();
 $brands = $database->getBrands();
 $stabilities = $database->getStabilities();
 
-// $inCartQuantity = $database->getInCartQuantity();
-// $quantity = mysqli_fetch_field($inCartQuantity);
+$inCartQuantity = $database->getInCartQuantity();
+$quantity = mysqli_fetch_assoc($inCartQuantity);
 ?>
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -70,7 +70,7 @@ $stabilities = $database->getStabilities();
                         <a class="btn btn-outline-dark" href="cart.php">
                             <i class="bi-cart-fill me-1"></i>
                             Cart
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">1</span>
+                            <span class="badge bg-dark text-white ms-1 rounded-pill"><?=$quantity['quantity']?></span>
                         </a>
                     </div>
                 </div>

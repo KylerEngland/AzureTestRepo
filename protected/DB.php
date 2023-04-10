@@ -78,6 +78,18 @@ class DB{
         return $result;
     }
 
+    public static function getInCartQuantity(){
+        $sql = "SELECT COUNT('discid') AS quantity FROM cart;";
+        $result = mysqli_query(self::$connection,$sql);
+        return $result;
+    }
+
+    public static function getCartContent(){
+        $sql = "SELECT * FROM cart";
+        $result = mysqli_query(self::$connection,$sql);
+        return $result;
+    }
+
     // public static function addToCart($id){
     //     if($statement = mysqli_prepare(self::$connection,"INSERT INTO cart(discid,discname,imagename,brandcode,stabilitycode,quantity,price)
     //     SELECT
@@ -116,18 +128,6 @@ class DB{
     //         //         WHERE
     //         //             id = '$id'";
         
-    // }
-
-    public static function getInCartQuantity(){
-        $sql = "SELECT COUNT('discid') AS quantity FROM cart;";
-        $result = mysqli_query(self::$connection,$sql);
-        return $result;
-    }
-
-    // public static function getCartContent(){
-    //     $sql = "SELECT * FROM cart";
-    //     $result = mysqli_query(self::$connection,$sql);
-    //     return $result;
     // }
 
 
