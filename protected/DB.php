@@ -1,9 +1,8 @@
 <?php 
-// require_once('protected/config.inc.php');
+
 class DB{
 
-
-    private static $connection;
+    private static $conn;
     private static $host;
     private static $username;
     private static $password;
@@ -13,26 +12,35 @@ class DB{
     //     PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
     // );
     
-
+    
     function __construct(){
         self::$host = getenv("DBHOST");
         self::$username = getenv("DBUSER");
         self::$password = getenv("DBPASS");
         self::$db_name = getenv("DBNAME");
-
+        
         //Initializes MySQLi
-        self::$connection = mysqli_init();
-
+        self::$conn = mysqli_init();
+        
         // Establish the connection
-        mysqli_real_connect(self::$connection, self::$host, self::$username, self::$password, self::$db_name, 3306, NULL, MYSQLI_CLIENT_SSL);
-
+        mysqli_real_connect(self::$conn, self::$host, self::$username, self::$password, self::$db_name, 3306, NULL, MYSQLI_CLIENT_SSL);
+        
         //If connection failed, show the error
         if (mysqli_connect_errno()) {
             die('Failed to connect to MySQL: ' . mysqli_connect_error());
         }
     }
-
-
+    
+    public static function getContent(){
+        // $sql = "SELECT * FROM disc AS d
+        //         INNER JOIN brand AS b ON d.brandcode = b.brandcode
+        //         ORDER BY id DESC";
+        $result = mysqli_query(self::$conn,'  SELECT * FROM disc AS d
+        INNER JOIN brand AS b ON d.brandcode = b.brandcode
+        ORDER BY id DESC');
+        return $result;
+    }
+    
     // public static function emptyCart(){
     //     if ($statement = mysqli_prepare(self::$connection, "DELETE FROM `cart` WHERE true = true")){
     //         mysqli_stmt_execute($statement);
@@ -99,15 +107,6 @@ class DB{
     //     return $result;
     // }
 
-    public static function getContent(){
-        // $sql = "SELECT * FROM disc AS d
-        //         INNER JOIN brand AS b ON d.brandcode = b.brandcode
-        //         ORDER BY id DESC";
-        $result = mysqli_query(self::$connection,'  SELECT * FROM disc AS d
-        INNER JOIN brand AS b ON d.brandcode = b.brandcode
-        ORDER BY id DESC');
-        return $result;
-    }
 
     // public static function getFilteredContent($type, $brand, $stability){
     //     try{
