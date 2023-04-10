@@ -4,23 +4,47 @@ class DB{
 
 
     private static $connection;
-    private static $settings = array(
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
-    );
+    private static $host;
+    private static $username;
+    private static $password;
+    private static $db_name;
+    // private static $settings = array(
+    //     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+    //     PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
+    // );
+    
 
     function __construct(){
         if (!isset(self::$connection)) {
-            try {
-                self::$connection = new PDO(
-                        DBCONNSTRING,
-                        DBUSER,
-                        DBPASS,
-                        self::$settings
-                );
-            } catch (PDOException $e) {
-                throw new PDOException($e->getMessage(), (int) $e->getCode());
+
+            self::$host = DBHOST;
+            self::$username = DBUSER;
+            self::$password = DBPASS;
+            self::$db_name = DBNAME;
+            
+            //Initializes MySQLi
+            $connection = mysqli_init();
+            
+            mysqli_ssl_set($connection,NULL,NULL, "/var/www/html/DigiCertGlobalRootG2.crt.pem", NULL, NULL);
+            
+            // Establish the connection
+            mysqli_real_connect(self::$connection, self::$host, self::$username, self::$password, self::$db_name, 3306, NULL, MYSQLI_CLIENT_SSL);
+            
+            //If connection failed, show the error
+            if (mysqli_connect_errno())
+            {
+                die('Failed to connect to MySQL: '.mysqli_connect_error());
             }
+            // try {
+            //     self::$connection = new PDO(
+            //             DBCONNSTRING,
+            //             DBUSER,
+            //             DBPASS,
+            //             self::$settings
+            //     );
+            // } catch (PDOException $e) {
+            //     throw new PDOException($e->getMessage(), (int) $e->getCode());
+            // }
         }
     }
 
