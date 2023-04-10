@@ -33,19 +33,19 @@ class DB{
     }
 
 
-    public static function emptyCart(){
-        if ($statement = mysqli_prepare(self::$connection, "DELETE FROM `cart` WHERE true = true")){
-            mysqli_stmt_execute($statement);
-            mysqli_stmt_close($statement);
-            return $statement;
-        }
-    }
+    // public static function emptyCart(){
+    //     if ($statement = mysqli_prepare(self::$connection, "DELETE FROM `cart` WHERE true = true")){
+    //         mysqli_stmt_execute($statement);
+    //         mysqli_stmt_close($statement);
+    //         return $statement;
+    //     }
+    // }
 
-    public static function getTotal(){
-        $sql = "SELECT ROUND(SUM(price), 2) AS total FROM cart";
-        $result = mysqli_query(self::$connection, $sql);
-        return $result;
-    }
+    // public static function getTotal(){
+    //     $sql = "SELECT ROUND(SUM(price), 2) AS total FROM cart";
+    //     $result = mysqli_query(self::$connection, $sql);
+    //     return $result;
+    // }
 
     // public static function addToCart($id){
     //     if($statement = mysqli_prepare(self::$connection,"INSERT INTO cart(discid,discname,imagename,brandcode,stabilitycode,quantity,price)
@@ -87,23 +87,25 @@ class DB{
         
     // }
 
-    public static function getInCartQuantity(){
-        $sql = "SELECT COUNT('discid') AS quantity FROM cart;";
-        $result = mysqli_query(self::$connection,$sql);
-        return $result;
-    }
+    // public static function getInCartQuantity(){
+    //     $sql = "SELECT COUNT('discid') AS quantity FROM cart;";
+    //     $result = mysqli_query(self::$connection,$sql);
+    //     return $result;
+    // }
 
-    public static function getCartContent(){
-        $sql = "SELECT * FROM cart";
-        $result = mysqli_query(self::$connection,$sql);
-        return $result;
-    }
+    // public static function getCartContent(){
+    //     $sql = "SELECT * FROM cart";
+    //     $result = mysqli_query(self::$connection,$sql);
+    //     return $result;
+    // }
 
     public static function getContent(){
-        $sql = "SELECT * FROM disc AS d
-                INNER JOIN brand AS b ON d.brandcode = b.brandcode
-                ORDER BY id DESC";
-        $result = mysqli_query(self::$connection,$sql);
+        // $sql = "SELECT * FROM disc AS d
+        //         INNER JOIN brand AS b ON d.brandcode = b.brandcode
+        //         ORDER BY id DESC";
+        $result = mysqli_query(self::$connection,'  SELECT * FROM disc AS d
+        INNER JOIN brand AS b ON d.brandcode = b.brandcode
+        ORDER BY id DESC');
         return $result;
     }
 
@@ -140,23 +142,23 @@ class DB{
     //     }
     // }
 
-    public static function getTypes(){
-        $sql = "SELECT * FROM type ORDER BY sortvalue ASC";
-        $result = mysqli_query(self::$connection,$sql);
-        return $result;
-    }
+    // public static function getTypes(){
+    //     $sql = "SELECT * FROM type ORDER BY sortvalue ASC";
+    //     $result = mysqli_query(self::$connection,$sql);
+    //     return $result;
+    // }
 
-    public static function getBrands(){
-        $sql = "SELECT * FROM brand ORDER BY brandname ASC";
-        $result = mysqli_query(self::$connection,$sql);
-        return $result;
-    }
+    // public static function getBrands(){
+    //     $sql = "SELECT * FROM brand ORDER BY brandname ASC";
+    //     $result = mysqli_query(self::$connection,$sql);
+    //     return $result;
+    // }
 
-    public static function getStabilities(){
-        $sql = "SELECT * FROM stability ORDER BY sortvalue ASC";
-        $result = mysqli_query(self::$connection,$sql);
-        return $result;
-    }
+    // public static function getStabilities(){
+    //     $sql = "SELECT * FROM stability ORDER BY sortvalue ASC";
+    //     $result = mysqli_query(self::$connection,$sql);
+    //     return $result;
+    // }
 }
 
 ?>
