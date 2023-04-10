@@ -61,7 +61,12 @@ class DB{
 
         $sql .= " ORDER BY id DESC";
         $result = mysqli_query(self::$connection,$sql);
-        return $result;
+        $discs = array();
+        while($row = mysqli_fetch_assoc($result)){
+            $newDisc = new Disc($row['id'], $row['name'], $row['imgname'], $row['brandname'], $row['brandcode'],  $row['stabilitycode'], $row['quantity'], $row['price'], $row['flightnums']);
+            array_push($discs, $newDisc);
+        }
+        return $discs;
     }
     
     

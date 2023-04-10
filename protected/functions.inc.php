@@ -1,14 +1,8 @@
 <?php
 function outputDiscs($discs){
-    $foundOne = false;
     foreach($discs as $disc){
-        $foundOne = true;
         echo $disc->outputCard();
     }
-    // if($foundOne){
-    //     return $disc;
-    // }
-    // return 'No posts found';
 }
 
 function outputCart($items){

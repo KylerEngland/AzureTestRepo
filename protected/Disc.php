@@ -86,5 +86,9 @@ class Disc
                     </form>';
         return $card;
     }
+
+    public function outputCart(){
+        
+    }
 }
 ?>
