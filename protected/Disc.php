@@ -9,10 +9,10 @@ class Disc
     private $brandCode;
     private $stabilityCode;
     private $quantity;
-    private $price;
-    private $flightNums;
+    private $prices;
+    private $flightNumbers;
 
-    function __construct($id, $name, $imageName, $brandName, $brandCode, $stabilityCode, $quantity, $price, $flightNums)
+    function __construct($id, $name, $imageName, $brandName, $brandCode, $stabilityCode, $quantity, $prices, $flightNumbers)
     {
         $this->id = $id;
         $this->name = $name;
@@ -21,8 +21,8 @@ class Disc
         $this->brandCode = $brandCode;
         $this->stabilityCode = $stabilityCode;
         $this->quantity = $quantity;
-        $this->$price = $price;
-        $this->$flightNums = $flightNums;
+        $this->$prices = $prices;
+        $this->$flightNumbers = $flightNumbers;
     }
 
     public function getID()
@@ -56,10 +56,10 @@ class Disc
     }
     public function getPrice()
     {
-        return $this->price;
+        return $this->prices;
     }
     public function getFlightNums(){
-        return $this->flightNums;
+        return $this->flightNumbers;
     }
 
     public function outputCard()
@@ -75,7 +75,6 @@ class Disc
                                         <p>' . $this->getBrandName() . '</p>
                                         <h6>$' . $this->getPrice() . '</h6>
                                     </div>
-                                    <p>' . $this->getQuantity() . '</p>
                                 </div>
                                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                     <div class="text-center">
