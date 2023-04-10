@@ -6,17 +6,19 @@ class Disc
     private $name;
     private $imageName;
     private $brandName;
+    private $brandCode;
     private $stabilityCode;
     private $quantity;
     private $price;
     private $flightNums;
 
-    function __construct($id, $name, $imageName, $brandName, $stabilityCode, $quantity, $price, $flightNums)
+    function __construct($id, $name, $imageName, $brandName, $brandCode, $stabilityCode, $quantity, $price, $flightNums)
     {
         $this->id = $id;
         $this->name = $name;
         $this->imageName = $imageName;
         $this->brandName = $brandName;
+        $this->brandCode = $brandCode;
         $this->stabilityCode = $stabilityCode;
         $this->quantity = $quantity;
         $this->$price = $price;
@@ -39,6 +41,11 @@ class Disc
     {
         return $this->brandName;
     }
+
+    public function getBrandCode()
+    {
+        return $this->brandCode;
+    }
     public function getStabilityCode()
     {
         return $this->stabilityCode;
@@ -60,14 +67,15 @@ class Disc
         $card .= '<form name="newPost" action="addToCart.php" method="post">
                         <div class="col mb-5">
                             <div class="card h-100">
-                                <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">' . $this->flightNums . '</div>
+                                <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">' . $this->getFlightNums() . '</div>
                                 <img class="card-img-top" src="assets/img/' . $this->getImageName() . '.jpg" alt="..." />
                                 <div class="card-body p-4">
                                     <div class="text-center">
                                         <h5 class="fw-bolder">' . $this->getName() . '</h5>
                                         <p>' . $this->getBrandName() . '</p>
-                                        <h6>$' . $this->price . '</h6>
+                                        <h6>$' . $this->getPrice() . '</h6>
                                     </div>
+                                    <p>' . $this->getQuantity() . '</p>
                                 </div>
                                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                     <div class="text-center">
