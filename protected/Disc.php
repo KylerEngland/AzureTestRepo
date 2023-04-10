@@ -60,13 +60,13 @@ class Disc
         $card .= '<form name="newPost" action="addToCart.php" method="post">
                         <div class="col mb-5">
                             <div class="card h-100">
-                                <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">' . $this->getFlightNums() . '</div>
+                                <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem">' . $this->flightNums . '</div>
                                 <img class="card-img-top" src="assets/img/' . $this->getImageName() . '.jpg" alt="..." />
                                 <div class="card-body p-4">
                                     <div class="text-center">
                                         <h5 class="fw-bolder">' . $this->getName() . '</h5>
                                         <p>' . $this->getBrandName() . '</p>
-                                        <h6>$' . $this->getPrice() . '</h6>
+                                        <h6>$' . $this->price . '</h6>
                                     </div>
                                 </div>
                                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
