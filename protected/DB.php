@@ -90,48 +90,6 @@ class DB{
         return $result;
     }
 
-    // public static function addToCart($id){
-    //     if($statement = mysqli_prepare(self::$connection,"INSERT INTO cart(discid,discname,imagename,brandcode,stabilitycode,quantity,price)
-    //     SELECT
-    //         id,
-    //         name,
-    //         imgname,
-    //         brandcode,
-    //         stabilitycode,
-    //         quantity,
-    //         price
-    //     FROM
-    //         disc
-    //     WHERE
-    //         id = '$id'")){
-            
-    //     }
-    //         // $sql = "INSERT INTO `cart`(
-    //         //             `discid`,
-    //         //             `discname`,
-    //         //             `imagename`,
-    //         //             `brandcode`,
-    //         //             `stabilitycode`,
-    //         //             `quantity`,
-    //         //             `price`
-    //         //         )
-    //         //         SELECT
-    //         //             id,
-    //         //             name,
-    //         //             imgname,
-    //         //             brandcode,
-    //         //             stabilitycode,
-    //         //             quantity,
-    //         //             price
-    //         //         FROM
-    //         //             disc
-    //         //         WHERE
-    //         //             id = '$id'";
-        
-    // }
-
-
-
     public static function getTypes(){
         $sql = "SELECT * FROM type ORDER BY sortvalue ASC";
         $result = mysqli_query(self::$connection,$sql);
@@ -149,6 +107,46 @@ class DB{
         $result = mysqli_query(self::$connection,$sql);
         return $result;
     }
+
+    public static function addToCart($id){
+
+        $discID = $id;
+        $discName = '';
+        $imageName = '';
+        $brandCode = '';
+        $stabilityCode = '';
+        $quantity = 0;
+        $price = 0;
+
+        $sql = " SELECT
+                    id,
+                    name,
+                    imgname,
+                    brandcode,
+                    stabilitycode,
+                    quantity,
+                    price
+                FROM
+                    disc
+                WHERE
+                    id = '$id'";
+
+        $result = mysqli_query(self::$connection,$sql);
+        while ($row = mysqli_fetch_assoc($result)){
+            $discName = $row['name'];
+            $imageName = $row['imgname'];
+            $brandCode = $row['imgname'];
+            $stabilityCode = $row['imgname'];
+            $quantity = $row['imgname'];
+            $price = $row['imgname'];
+        }
+        if($statement = mysqli_prepare(self::$connection,"INSERT INTO cart(discid,discname,imagename,brandcode,stabilitycode,quantity,price) VALUES (?, ?, ?, ?, ?, ?, ?)")){
+            mysqli_stmt_bind_param($statement, 'issssid', $discID, $discName, $imageName, $brandCode, $stabilityCode, $quantity, $price);
+            mysqli_stmt_execute($statement);
+            mysqli_stmt_close($statement);
+        }        
+    }
+
 }
 
 ?>
