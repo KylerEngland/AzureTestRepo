@@ -21,8 +21,8 @@ class Disc
         $this->brandCode = $brandCode;
         $this->stabilityCode = $stabilityCode;
         $this->quantity = $quantity;
-        $this->$prices = $prices;
-        $this->$flightNumbers = $flightNumbers;
+        $this->prices = $prices;
+        $this->flightNumbers = $flightNumbers;
     }
 
     public function getID()
