@@ -90,10 +90,16 @@ class DB{
         return $result;
     }
 
+   
     public static function getCartContent(){
-        $sql = "SELECT * FROM cart";
+        $sql =  "SELECT * FROM cart as c inner join brand as b on b.brandcode = c.brandcode inner join disc as d on d.id = c.discid";
         $result = mysqli_query(self::$connection,$sql);
-        return $result;
+        $discs = array();
+        while($row = mysqli_fetch_assoc($result)){
+            $newDisc = new Disc($row['id'], $row['name'], $row['imgname'], $row['brandname'], $row['brandcode'],  $row['stabilitycode'], $row['quantity'], $row['price'], $row['flightnums']);
+            array_push($discs, $newDisc);
+        }
+        return $discs;
     }
 
     public static function getTypes(){
