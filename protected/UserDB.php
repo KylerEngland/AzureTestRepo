@@ -24,10 +24,12 @@ class UserDB
         if (mysqli_connect_errno()) {
             die('Failed to connect to MySQL: ' . mysqli_connect_error());
         }
+        echo 'Construct made!';
     }
 
     public static function register($firstName, $lastName, $email, $password)
     {
+        echo 'Made it to function.';
         $sql = "SELECT id, firstName, lastName FROM profiles WHERE email = ?";
         $statement = mysqli_prepare(self::$connection, $sql);
         mysqli_stmt_bind_param($statement, 's', $email);
