@@ -24,7 +24,7 @@ $database = new UserDB;
 // 				window.onload = function () { alert("Incorrect email."); } 
 // 			</script>');
 // }
-$name = $_POST['registerName'];
+$name = $_GET['registerName'];
 echo("This is one post value:");
 echo($name);
 // $database->register($_POST['registerName'], $_POST['registerLastName'], $_POST['registerEmail'], $_POST['registerPassword']);
