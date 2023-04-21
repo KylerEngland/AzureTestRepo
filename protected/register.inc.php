@@ -1,5 +1,6 @@
 <?php
-require_once('protected/UserDB.php');
+require_once('UserDB.php');
+echo("It reached this file.");
 
 $database = new UserDB;
 
