@@ -73,7 +73,7 @@
                                     </div>
                                     <div class="tab-pane fade" id="pills-register" role="tabpanel"
                                         aria-labelledby="tab-register">
-                                        <form action="protected\register.inc.php\" method="get" autocomplete="off">
+                                        <form action="protected\register.inc.php\" method="post" autocomplete="off">
 
                                             <p class="text-center">New profile:</p>
 
