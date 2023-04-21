@@ -1,5 +1,5 @@
 <?php
-require_once('UserDB.php');
+require_once('protected/UserDB.php');
 
 $database = new UserDB;
 
