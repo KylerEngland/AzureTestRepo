@@ -1,6 +1,5 @@
 <?php
 require_once('UserDB.php');
-echo("It reached this file.");
 
 $database = new UserDB;
 
@@ -29,4 +28,5 @@ $database = new UserDB;
 $database->register($_POST['registerName'], $_POST['registerLastName'], $_POST['registerEmail'], $_POST['registerPassword']);
 
 header('Location: ../loginPage.php');
+echo("It reached this file.");
 ?>
