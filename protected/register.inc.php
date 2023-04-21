@@ -27,5 +27,5 @@ $database = new UserDB;
 
 $database->register($_POST['registerName'], $_POST['registerLastName'], $_POST['registerEmail'], $_POST['registerPassword']);
 
-header('Location: loginPage.php');
+header('Location: ../../loginPage.php');
 ?>
