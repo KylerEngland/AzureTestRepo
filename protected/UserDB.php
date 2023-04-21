@@ -15,6 +15,9 @@ class UserDB
         self::$db_name = getenv("DBNAME");
 
         //Initializes MySQLi
+        self::$connection = mysqli_init();
+
+        //Initializes MySQLi
         self::$connection = mysqli_connect(self::$host, self::$username, self::$password, self::$db_name);
 
         //If connection failed, show the error
@@ -57,7 +60,7 @@ class UserDB
         if (mysqli_stmt_num_rows($statement) > 0) {
             // Username already exists
             mysqli_stmt_bind_result($statement, $id, $firstName, $lastName, $email, $password2);
-            while(mysqli_stmt_fetch($statement)){
+            while (mysqli_stmt_fetch($statement)) {
                 if (password_verify($password, $password2)) {
                     // Verification success! User has logged-in!
                     // Create sessions, so we know the user is logged in, they basically act like cookies but remember the data on the server.
