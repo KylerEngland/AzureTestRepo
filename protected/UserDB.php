@@ -47,7 +47,7 @@ class UserDB
             mysqli_stmt_bind_param($statement, 'ssss', $firstName, $lastName, $email, $pass);
             mysqli_stmt_execute($statement);
             mysqli_stmt_close($statement);
-            echo 'You have successfully registered, you can now login!';
+
         }
     }
 
