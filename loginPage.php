@@ -77,10 +77,10 @@ include_once('navbar.php');
                                     </div>
                                     <div class="tab-pane fade" id="pills-register" role="tabpanel"
                                         aria-labelledby="tab-register">
-                                        <form action="protected/register.inc.php" method="post" autocomplete="off">
+                                        <form action="protected\register.inc.php" method="post" autocomplete="off">
 
                                             <p class="text-center">New profile:</p>
-
+                                            
                                             <!-- Name input -->
                                             <div class="form-outline mb-4">
                                                 <input type="text" id="registerName" class="form-control"
