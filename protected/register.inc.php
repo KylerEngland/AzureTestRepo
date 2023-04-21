@@ -2,7 +2,7 @@
 require_once('UserDB.php');
 
 $database = new UserDB;
-
+echo("It reached this file.");
 // // Now we check if the data was submitted, isset() function will check if the data exists.
 // if (!isset($_POST['registerName'], $_POST['registerLastName'], $_POST['registerPassword'], $_POST['registerEmail'])) {
 // 	// Could not get the data that should have been sent.
@@ -28,5 +28,4 @@ $database = new UserDB;
 $database->register($_POST['registerName'], $_POST['registerLastName'], $_POST['registerEmail'], $_POST['registerPassword']);
 
 header('Location: ../loginPage.php');
-echo("It reached this file.");
 ?>
