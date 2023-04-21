@@ -28,7 +28,7 @@ class UserDB
 
     public static function register($firstName, $lastName, $email, $password)
     {
-        echo 'Made it to function.';
+   
         $sql = "SELECT id, firstName, lastName FROM profiles WHERE email = ?";
         $statement = mysqli_prepare(self::$connection, $sql);
         mysqli_stmt_bind_param($statement, 's', $email);
