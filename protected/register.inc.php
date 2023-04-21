@@ -24,9 +24,10 @@ $database = new UserDB;
 // 				window.onload = function () { alert("Incorrect email."); } 
 // 			</script>');
 // }
+$name = $_POST['registerName'];
 echo("This is one post value:");
-echo($_POST['registerName']);
-$database->register($_POST['registerName'], $_POST['registerLastName'], $_POST['registerEmail'], $_POST['registerPassword']);
+echo($name);
+// $database->register($_POST['registerName'], $_POST['registerLastName'], $_POST['registerEmail'], $_POST['registerPassword']);
 
-header('Location: ../loginPage.php');
+// header('Location: ../loginPage.php');
 ?>
