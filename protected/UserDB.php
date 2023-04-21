@@ -1,7 +1,6 @@
 <?php
 class UserDB
 {
-
     private static $connection;
     private static $host;
     private static $username;
@@ -16,10 +15,7 @@ class UserDB
         self::$db_name = getenv("DBNAME");
 
         //Initializes MySQLi
-        self::$connection = mysqli_init();
-
-        // Establish the connection
-        mysqli_real_connect(self::$connection, self::$host, self::$username, self::$password, self::$db_name, 3306, NULL, MYSQLI_CLIENT_SSL);
+        self::$connection = mysqli_connect(self::$host, self::$username, self::$password, self::$db_name);
 
         //If connection failed, show the error
         if (mysqli_connect_errno()) {
@@ -32,8 +28,6 @@ class UserDB
         $sql = "SELECT id, firstName, lastName FROM profiles WHERE email = ?";
         $statement = mysqli_prepare(self::$connection, $sql);
         mysqli_stmt_bind_param($statement, 's', $email);
-        // $statement->bind_param("s", $email);
-        // $statement->execute();
         mysqli_stmt_execute($statement);
         mysqli_stmt_store_result($statement);
 
@@ -43,9 +37,9 @@ class UserDB
         } else {
             // Username doesn't exist, insert new account
             $pass = password_hash($password, PASSWORD_BCRYPT);
-            $sql = "INSERT INTO profiles (firstName, lastName, email, password) VALUES (:firstName, :lastName, :email, '$pass')";
+            $sql = "INSERT INTO profiles (firstName, lastName, email, password) VALUES (?, ?, ?, ?)";
             $statement = mysqli_prepare(self::$connection, $sql);
-            mysqli_stmt_bind_param($statement, 'ssss', $firstName, $lastName, $email, $password);
+            mysqli_stmt_bind_param($statement, 'ssss', $firstName, $lastName, $email, $pass);
             mysqli_stmt_execute($statement);
             mysqli_stmt_close($statement);
             echo 'You have successfully registered, you can now login!';
@@ -54,7 +48,7 @@ class UserDB
 
     public static function login($email, $password)
     {
-        $sql = "SELECT id, firstName, lastName, email, password FROM profiles WHERE email = :email";
+        $sql = "SELECT id, firstName, lastName, email, password FROM profiles WHERE email = ?";
         $statement = mysqli_prepare(self::$connection, $sql);
         mysqli_stmt_bind_param($statement, 's', $email);
         mysqli_stmt_execute($statement);
@@ -86,5 +80,4 @@ class UserDB
         }
     }
 }
-
 ?>
