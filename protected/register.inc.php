@@ -1,7 +1,7 @@
 <?php
 require_once('UserDB.php');
 
-// $database = new UserDB;
+$database = new UserDB;
 
 // // Now we check if the data was submitted, isset() function will check if the data exists.
 // if (!isset($_POST['registerName'], $_POST['registerLastName'], $_POST['registerPassword'], $_POST['registerEmail'])) {
