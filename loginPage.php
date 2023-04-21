@@ -1,10 +1,5 @@
-<?php
-include_once('navbar.php');
-
-?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -20,6 +15,7 @@ include_once('navbar.php');
 </head>
 
 <body>
+    <?php include_once('navbar.php'); ?>
     <!-- Section-->
     <section class="h-100" style="background-color: #eee;">
         <div class="container h-100 py-5">
@@ -80,7 +76,7 @@ include_once('navbar.php');
                                         <form action="protected\register.inc.php" method="post" autocomplete="off">
 
                                             <p class="text-center">New profile:</p>
-                                            
+
                                             <!-- Name input -->
                                             <div class="form-outline mb-4">
                                                 <input type="text" id="registerName" class="form-control"
